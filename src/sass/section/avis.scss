@@ -1,0 +1,159 @@
+.avis {
+    padding-top: 154px;
+    padding-bottom: 227px;
+
+    .avis__contents {
+        display: flex;
+        justify-content: center;
+        background-image: url("../../../src/assets/images/backgroundAviis.jpg");
+        background-size: cover;
+        height: 522px;
+        border-radius: 10px;
+        position: relative;
+
+        .content {
+            display: flex;
+            align-items: center;
+            margin-left: 10.5px;
+            margin-right: 10.5px;
+            position: relative;
+            width: fit-content;
+
+            .img {
+                background-image: url("../../../src/assets/svg/avis1.svg");
+                background-repeat: no-repeat;
+                background-size: cover;
+                color: black;
+                height: 206.9px;
+                width: 350px;
+                padding-top: 30px;
+                padding-left: 31px;
+                padding-right: 34px;
+
+                p {
+                    font-size: 14px;
+                    color: #474747;
+                    font-weight: 300;
+                    line-height: 20px;
+                    padding-top: 5px;
+                    font-family: roboto;
+                }
+            }
+
+            .avis__footer {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 390px;
+                padding-left: 91px;
+
+                // width: 100%;
+                label {
+                    font-size: 18px;
+                    font-weight: bold;
+                    line-height: 28px;
+                    font-family: Manrope;
+                }
+
+                span {
+                    font-family: Manrope;
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 24px;
+                    opacity: 70%;
+                }
+
+                .photo-commentator {
+                    width: 56px;
+                    height: 56px;
+                    border-radius: 50%;
+                    position: absolute;
+                    left: 19px;
+                }
+            }
+
+        }
+
+    }
+}
+
+@media (max-width: 1203px) {
+    .avis {
+        .avis__contents {
+            .content {
+                justify-content: center;
+
+                &:last-child {
+                    display: none;
+                }
+
+                .img {
+                    padding-top: 20px;
+                    padding-left: 20px;
+
+                    p {
+                        font-size: 20px;
+                        padding-top: 6px;
+
+                    }
+                }
+
+                .avis__footer {
+                    top: 383px;
+                    left: 19px;
+
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    .avis {
+        .avis__contents {
+            .row{
+         display: flex;
+         justify-content: center;
+            }
+            .content {
+                justify-content: start;
+                // margin-left: 6%;
+                margin-top: 14px;
+
+                .img {
+                    height: 191.9px;
+                }
+
+                .avis__footer {
+                    top: 11px;
+                    left: 323px;
+
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .avis {
+        .avis__contents {
+            .content {
+                margin-left: 0%;
+                margin-right: 0%;
+                .avis__footer {
+                    top: 2px;
+                    left: 103px;
+                    color: black;
+                    label{
+                        color: #FF9921;
+                        opacity: 1;
+                    }
+                    &:first-child{
+                        color: white;
+                    }
+
+                }
+            }
+        }
+    }
+}

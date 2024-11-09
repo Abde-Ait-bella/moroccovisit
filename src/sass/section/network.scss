@@ -1,0 +1,23 @@
+.network{
+    margin-top: 186px;
+    // width: 100%;
+    .network__partners{
+        display: flex;
+        align-items: center;
+        width: 100%;
+        .col-lg{
+            display: flex;
+            justify-content: center;
+        }
+    }
+}
+@media (max-width: 767px){
+    .network{
+        display: block;
+        .network__partners{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+}
+}

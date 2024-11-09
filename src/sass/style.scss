@@ -1,0 +1,67 @@
+@font-face {
+    font-family: Montserrat;
+    src: url(../fonts/Montserrat-VariableFont_wght.ttf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+    body{
+        font-family: Montserrat;
+        color: white;
+        &::-webkit-scrollbar{
+            display: none;
+        }
+    }
+}
+
+.section-title{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .subtitle{
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: 10px;
+        color: #474747;
+        margin-bottom: 27px;
+        text-transform: uppercase;
+    }
+
+    .tilte{
+        font-size: 46px;
+        font-weight: bold;
+        color: #2D2D2D;
+    }
+}
+.container{
+    max-width: 1593px;
+}
+
+@media (max-width: 622px){
+    .section-title{
+        .subtitle{
+            font-size: 11px;
+            letter-spacing: 5px;
+        }
+        .tilte{
+            font-size: 25px;
+            display: flex;
+            justify-content: center;
+        }
+    }
+}
+
+@import "./section/nav";
+@import "./section/slider";
+@import "./section/activites.scss";
+@import "./section/about-us";
+@import "./section/network";
+@import "./section/avis";
+@import "./section/footer";
+@import "./section/hotels.scss"
