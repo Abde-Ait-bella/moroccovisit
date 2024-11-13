@@ -18,12 +18,12 @@
             }
         }
         .about-us__content_informations{
-            padding-left: 94px;
+            // padding-left: 94px;
             position: relative;
             counter-reset: number;
             .about-us__content_information{
                 position: relative;
-                padding-left: 75px;
+                padding-left: 60px;
 
                 &::before{
                     counter-increment: number;

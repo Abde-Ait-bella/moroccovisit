@@ -1,116 +1,14 @@
-// .activites {
-//     padding: 135px 0 159px 0;
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-
-//     .wrapper {
-//         padding-top: 112px;
-//         width: 100%;
-//         display: flex;
-//         justify-content: center;
-//         .container{
-//             position: relative;
-//             .row{
-//                 &.acticites{
-//                     padding-right: 35px;
-//                     padding-left: 35px;
-//                 }
-//             }
-//             .flech {
-//                 position: absolute;
-//                 // width: 42.69px;
-//                 cursor: pointer;
-
-//                 label{
-//                     color: black;
-//                     text-transform: uppercase;
-//                     font-size: 12px;
-//                     font-weight: bold;
-//                     letter-spacing: 2px;
-//                     margin-top: 29px;
-//                     margin-top: 29px;
-//                     cursor: pointer;
-//                 }
-//                 &.back {
-//                     left: -106px;
-//                     top: 50%;
-//                 }
-
-//                 &.next  {
-//                     right: -106px;
-//                     top: 50%;
-//                 }
-//             }
-//         }
-
-//         .carousel {
-//             // max-width: 1524.5px;
-//             // padding-top: 112px;
-//             display: flex;
-//             // grid-auto-flow: column;
-//             // grid-auto-columns: calc((100% / 4) - );
-//             overflow-x: auto;
-//             scroll-snap-type: x mandatory;
-//             scroll-behavior: smooth;
-//             scrollbar-width: none;
-//             .card {
-//                 // scroll-snap-align: start;
-//                 list-style: none;
-//                 cursor: pointer;
-//                 flex-direction: column;
-//                 padding: 12.5px;
-//                 position: relative;
-//                 cursor: grab;
-//                 user-select: none;
-//                 img{
-//                     width: 355.98px;
-//                     height: 620px;
-//                 }
-//                 label{
-//                     position: absolute;
-//                     font-size: 32px;
-//                     font-weight: 600;
-//                     top: 503px;
-//                     left: 38.54px;
-//                 }
-//                 span{
-//                     position: absolute;
-//                     font-size: 17px;
-//                     font-weight: 500;
-//                     top: 551px;
-//                     left: 39.55px;
-//                 }
-//             }
-
-//             &::-webkit-scrollbar {
-//                 display: none;
-//             }
-//             &.dragging {
-//                 scroll-snap-type: none;
-//                 scroll-behavior: auto;
-//             }
-//             .no-transition {
-//                 scroll-behavior: auto;
-//             }
-//         }
-//     }
-
-
-// }
 .activites {
     padding: 135px 0 159px 0;
-    // display: flex;
 
     .wrapper {
         padding-top: 112px;
 
-        .carousel {
-            
             .card {
                 position: relative;
-                border-radius: 5px;
+                border-radius: 15px;
                 object-fit: cover;
+                color: white;
                 
                 label {
                     position: absolute;
@@ -127,7 +25,6 @@
                     bottom: 48px;
                     left: 39.55px;
                 }
-            }
         }
     }
 }
@@ -136,7 +33,7 @@
     border-radius: 10px;
     height: auto;
     text-align: center;
-    height: 619px;
+    height: 455px;
     width: 100%;
     object-fit: cover;
 }
@@ -146,15 +43,15 @@
     background-repeat: no-repeat;
     background-size: 42.69px 9.78px;
     content: "";
-    width: 42.62px;
+    width: 42px;
     height: 10px;
     margin-bottom: 29px;
-
 }
 
 .slick-prev::before,
 .slick-next::before {
     opacity: 1;
+    color: transparent !important;
 }
 
 .slick-prev,
@@ -176,10 +73,14 @@
 }
 
 .slick-prev {
-    left: -91px;
+    left: -38px !important;
 }
 
-.slick-next::before {
+.slick-slide {
+    padding: 0 10px; /* Adjust as needed */
+  }
+
+.slick-next::after {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -192,17 +93,4 @@
 
 .slick-next {
     right: -91px;
-}
-
-@media (max-width: 1780px) {
-    // .activites {
-    //     .wrapper {
-    //         .carousel {
-    //             .card {
-    //                 padding-left: 0;
-    //                 padding-right: 0;
-    //             }
-    //         }
-    //     }
-    // }
 }

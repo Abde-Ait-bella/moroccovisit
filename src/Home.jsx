@@ -39,7 +39,11 @@ import facebookIcone from "../src/assets/svg/footerIcone2.svg";
 import twitterIcone from "../src/assets/svg/footerIcone3.svg";
 import youtubeIcone from "../src/assets/svg/footerIcone4.svg";
 // import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps';
-import { GoogleMap, InfoWindow, Marker, StandaloneSearchBox, useJsApiLoader } from '@react-google-maps/api'
+import { GoogleMap, InfoWindow, Marker, StandaloneSearchBox, useJsApiLoader } from '@react-google-maps/api';
+import customIcon from './assets/images/hotel_marker.png';
+import hotel_logo from './assets/images/hotel_logo.png';
+
+// console.log(customIcon)
 
 const libraries = ["places"];
 
@@ -99,7 +103,7 @@ function Home() {
 
 
     const handleOnPlacesChanged = () => {
-        let address = inputRef.current.getPlaces();
+        let address = inputRef?.current.getPlaces();
         const place = address[0];
         setDefaultZoom(9)
         if (address && address.length > 0) {
@@ -172,7 +176,7 @@ function Home() {
 
     // Handle marker click to open InfoWindow
     const handleMarkerClick = (hotel) => {
-        setActiveMarker(hotel.place_id);
+        setActiveMarker(hotel?.place_id);
     };
 
     const handleInfoWindowClose = () => {
@@ -205,7 +209,7 @@ function Home() {
             {
                 breakpoint: 1350,
                 settings: {
-                    slidesToShow: 2,
+                    slidesToShow: 4,
                     slidesToScroll: 1,
                     infinite: true,
                     dots: true,
@@ -315,12 +319,13 @@ function Home() {
                 </div>
                 <div class="wrapper">
                     <div class="container">
-
                         <Slider {...settings} class="row carousel">
                             <div class="card">
                                 <img src={place_1_img} alt="img" />
-                                <label for="">Ait Benhaddou</label>
-                                <span>8 activites</span>
+                                <div className="info_card">
+                                    <label for="">Ait Benhaddou</label>
+                                    <span>8 activites</span>
+                                </div>
                             </div>
                             <div class="card">
                                 <img src={place_2_img} alt="img" />
@@ -433,18 +438,6 @@ function Home() {
                             </div>
                         </div>
                         <div class="row down-hotels">
-                            {/* <div class="col-lg col-sm-12 inputs">
-                                <label for="">DATE</label>
-                                <select name="" id="">
-                                    <option value="">Tue, 3 Nov</option>
-                                </select>
-                            </div>
-                            <div class="col-lg col-sm-12 inputs">
-                                <label for="">LOCATION</label>
-                                <select name="" id="">
-                                    <option value="">Morocco</option>
-                                </select>
-                            </div> */}
                             <div class="col-lg col-sm-12 inputs">
                                 <label for="">PLACE</label>
                                 {isLoaded &&
@@ -472,18 +465,57 @@ function Home() {
                     <div className={`map_section ${dataActive ? 'data_active' : ''}`}>
                         {
                             state.hotels.length > 0 && (
-                                <div style={{ color: "black" }}>
-                                    <h2>Nearby Hotels:</h2>
-                                    <ul>
-                                        {state.hotels.map((hotel) => (
-                                            <li key={hotel.place_id}>
-                                                {hotel.name} - {hotel.vicinity}
-                                            </li>
-                                        ))}
-                                    </ul>
+                                <div className="list_hotels">
+                                    {state.hotels.map((hotel) => (
+                                            <div key={hotel.place_id} class="body-card">
+                                                {/* <div class="card_doc_profile"> */}
+                                                    <div class="doc-info-left">
+                                                        <div class="doctor-img">
+                                                            <img src={hotel_logo} class="img-fluid" alt="hotel image" />
+                                                        </div>
+                                                        <div class="doc-info-cont">
+                                                        <h4 class="doc-name">{hotel.name}</h4>
+                                                            <div class="rating">
+                                                                {console.log('hotel',hotel.rating)
+                                                                }
+                                                                {Array.from({length: (hotel.rating)}).map((r)=>
+                                                                    <i key={r} class="fas fa-star filled"></i>
+                                                                )}
+                                                                 { 
+                                                                 (Number(hotel.rating ) === hotel.rating && !Number.isInteger(hotel.rating )) ?
+                                                                 <i class="fa-solid fa-star-half-stroke"></i>
+                                                                 : <></>
+                                                                }
+                                                                 <span style={{marginLeft: "5px"}} class="d-inline-block average-rating">({hotel.rating})</span>
+                                                            </div>
+                                                            <div class="clinic-details">
+                                                                <p class="doc-location">
+                                                                    <i class="fas fa-map-marker-alt"></i>
+                                                                    <span style={{ fontSize: "small", marginLeft: "6px" }}>{hotel.vicinity}</span>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="doc-info-right">
+                                                        <div class="clini-infos">
+                                                            <ul>
+                                                                <li><i class="fa-solid fa-user-check"></i> {hotel.user_ratings_total}</li>
+                                                                <li><i class="far fa-money-bill-alt"></i> 500 DH</li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="clinic-booking">
+                                                            <Link class="apt-btn" to={`/boocking/${hotel.place_id}/${hotel.name}/${hotel.vicinity}/${hotel.rating}`}>Boocking</Link>
+                                                        </div>
+                                                    </div>
+                                                {/* </div> */}
+                                            </div>
+                                    ))}
                                 </div>
                             )
+
+
                         }
+
                         {isLoaded ?
                             // <LoadScript googleMapsApiKey="AIzaSyBWF4GwzK9NQfaHWgXzpyYzzOZUSsxt824" libraries={libraries}>
                             <GoogleMap
@@ -497,9 +529,6 @@ function Home() {
                                 onLoad={onLoad}
                                 onUnmount={onUnmount}
                             >
-                                {/* Child components, such as markers, info windows, etc. */}
-
-                                {/* Map markers for hotels */}
                                 {state.hotels.map((hotel) => (
                                     <Marker
                                         key={hotel.place_id}
@@ -508,25 +537,29 @@ function Home() {
                                             lng: hotel.geometry.location.lng(),
                                         }}
                                         title={hotel.name}
-                                        onClick={() => handleMarkerClick(hotel)} // Open InfoWindow on marker click
+                                        icon={{
+                                            url: customIcon, 
+                                            scaledSize: new window.google.maps.Size(40, 40), 
+                                        }}
+                                        onClick={() => handleMarkerClick(hotel)} 
                                     >
                                         {console.log('hotel', hotel)}
                                         {activeMarker === hotel.place_id ? (
                                             <InfoWindow onCloseClick={handleInfoWindowClose}>
-                                                <div style={{ color: "#000", width: "10rem", height: "5rem", textAlign: center, marginBottom: "2px", backgroundColor: "red" }}>
+                                                <div style={{ color: "#000", width: "15rem", height: "9rem", textAlign: center, marginBottom: "2px" }}>
                                                     <img style={{ height: "2.2rem", objectFit: "contain" }} src={hotel.icon} alt="" />
                                                     <p style={{ fontWeight: "bold", color: "#2D2D2D", textAlign: "center", marginBottom: "0.6rem" }}>{hotel.name}</p>
                                                     <p style={{ marginBottom: "0.3rem", fontSize: "10px" }}>{hotel.vicinity}</p>
                                                     <p style={{ color: "#ffc207", fontWeight: "bold" }}>Rating: {hotel.rating || 'N/A'}</p>
                                                     <div>
-                                                        <Link to={"/boocking"}>
+                                                        <Link to={`/boocking/${hotel.place_id}/${hotel.name}/${hotel.vicinity}/${hotel.rating}`} style={{ padding: "8px 36px", fontWeight: "bold", margin: "10px 0", borderRadius: "15px", backgroundColor: "#2D2D2D", color: "white", textDecoration: "none" }}>
                                                             Boocking
                                                         </Link>
                                                     </div>
                                                 </div>
                                             </InfoWindow>
                                         )
-                                        : null
+                                            : null
                                         }
                                     </Marker>
                                 ))}

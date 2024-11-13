@@ -66,12 +66,6 @@
         align-items: end;
 
         .inputs {
-            // margin-right: 82px;
-
-            // &:nth-child(3) {
-            //     margin-right: 116px;
-            // }
-
             label {
                 font-size: 20px;
                 letter-spacing: 3px;
@@ -89,11 +83,9 @@
                 font-weight: 500;
                 letter-spacing: 1px;
                 color: #4E4E4E;
-                padding: 27px 0px 26px 22px;
+                padding: 15px 0px 15px 22px;
                 margin-top: 10px;
                 appearance: none;
-                background: url("../../../src/assets/svg/flecheSelect.svg") no-repeat 13px 8px;
-                background-position: calc(100% - 35px) 50%, ;
 
             }
 
@@ -110,36 +102,86 @@
                 color: #fff;
                 border-radius: 5px;
                 border: none;
-                padding: 26px 79px;
+                padding: 16px 79px;
                 font-family: Montserrat;
             }
         }
 
     }
 
-    .map_section{
+    .map_section {
         display: grid;
         grid-template-columns: 100%;
-    }
-    .map_section.data_active{
-        grid-template-columns: 50% 50%;
-    }
-    
+        height: 100vh;
+        overflow: hidden;
 
-    .gm-ui-hover-effect{
+        &.data_active {
+            grid-template-columns: 50% 50%;
+        }
+
+        .list_hotels{
+            overflow: hidden;
+            .body-card {
+                background-color: #6a6a6a;
+                display: grid;
+                grid-template-columns: 65% 35%;
+                margin: 15px 15px;
+                border-radius: 15px;
+                padding: 15px;
+    
+                .doc-info-left {
+                    display: grid;
+                    grid-template-columns: auto auto;
+                    gap: 10px;
+    
+                    .doctor-img{
+                        width: 8rem;
+                        img {
+                            border-radius: 8px;
+                            width: 100%;
+                            height: auto;
+                            object-fit: cover;
+                        }
+                    }
+                }
+    
+                .doc-info-right {
+                    display: grid;
+                    align-content: space-between;
+    
+                    .clinic-booking {
+                        width: 100%;
+                        text-align: center;
+                        background-color: #232323;
+                        color: white;
+                        padding: 9px 0;
+                        border-radius: 10px;
+    
+                        a {
+                            color: white;
+                            text-decoration: none;
+                            font-weight: bold;
+                        }
+                    }
+                }
+    
+            }
+        }
+
+    }
+
+
+    xss .gm-ui-hover-effect {
         height: 35px !important;
-        span{
+
+        span {
             color: #3D3D3D;
         }
     }
-
-    // .gm-style-iw-c{
-    //     display: none;
-    // }
 }
 
- /* Styles for the autocomplete dropdown */
- .pac-container {
+/* Styles for the autocomplete dropdown */
+.pac-container {
     font-family: Montserrat;
     font-size: 14px;
     color: #333;

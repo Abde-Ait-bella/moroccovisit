@@ -1,9 +1,228 @@
-.boocking{
+.boocking {
     height: 100vh;
     width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #3D3D3D;
 
-    .buttons{
+    form {
+        width: 100%;
+        display: grid;
+        gap: 2rem;
+
+        .form {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+
+            div {
+                width: 50%;
+
+                p {
+                    font-weight: bold;
+                    font-size: 20px;
+                    margin-bottom: 5px;
+
+                    span {
+                        color: #b30000;
+                        margin-left: 5px;
+                    }
+                }
+
+                input {
+                    width: 100%;
+                    border: none;
+                    border-bottom: 1px solid #3D3D3D;
+                    outline-style: none;
+                    font-size: 20px;
+                    padding: 5px;
+                }
+
+            }
+
+            .boocking_date {
+                width: 95% !important;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                gap: 0.7rem;
+
+                .header {
+                    position: relative;
+                    width: 75%;
+                    display: flex;
+
+                    .header_date {
+                        // display: flex;
+                        width: 100%;
+
+                        div {
+                            display: grid;
+                            grid-template-columns: auto auto auto auto auto auto auto;
+                            gap: 20px;
+                            justify-items: center;
+                            width: 100%;
+
+                            p {
+                                width: 7rem;
+                                text-align: center;
+                                margin-bottom: 1px;
+                            }
+                        }
+                    }
+
+                    button {
+                        position: absolute;
+
+                        i {
+                            color: #3D3D3D;
+                        }
+
+                        &.right {
+                            right: -4rem;
+                            height: 100%;
+                            background: transparent;
+                            border: none;
+                            font-size: 2rem;
+                            cursor: pointer;
+                        }
+
+                        &.left {
+                            left: -4rem;
+                            height: 100%;
+                            background: transparent;
+                            border: none;
+                            font-size: 2rem;
+                            cursor: pointer;
+                        }
+
+                    }
+                }
+
+                .body {
+                    width: 75%;
+                    display: grid;
+                    grid-template-columns: auto auto auto auto auto auto auto;
+                    gap: 20px;
+                    justify-items: center;
+
+                    div {
+                        width: 7rem;
+                        display: grid;
+                        gap: 10px;
+
+                        button {
+                            border: 2px solid #3D3D3D;
+                            padding: 3px 5px;
+                            border-radius: 0.9rem;
+
+                            &:hover {
+                                color: white;
+                                background-color: #707070;
+                                border: 2px solid #a8a8a8;
+                            }
+
+                            &.active {
+                                background-color: #3D3D3D;
+                                color: white;
+                                border: 2px solid #a8a8a8;
+                                font-weight: 500;
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+
+        .demands {
+            display: flex;
+            justify-content: space-around;
+
+            button {
+                border-radius: 50%;
+                width: 2rem;
+                height: 2rem;
+            }
+
+            div {
+                text-align: center;
+                display: grid;
+                gap: 13px;
+
+                button {
+                    border: 1px solid #3D3D3D;
+                }
+            }
+
+            .adult {
+                display: flex;
+                gap: 1rem;
+                align-items: end;
+                justify-content: center;
+            }
+
+            .number_days {
+                display: flex;
+                align-items: end;
+                gap: 1rem;
+                justify-content: center;
+            }
+
+            .child {
+                display: flex;
+                gap: 1rem;
+                align-items: end;
+                justify-content: center;
+            }
+        }
+
+        .rooms {
+            display: grid;
+            grid-template-columns: auto auto auto auto auto;
+            justify-items: center;
+            width: 36%;
+            margin: auto;
+            gap: 1rem 0;
+
+            .checkbox {
+                width: 3.5rem;
+                height: 3.5rem;
+                background-color: transparent;
+                border-radius: 14px;
+                display: inline-block;
+                vertical-align: middle;
+                cursor: pointer;
+                position: relative;
+                border: 5px solid #ccc;
+
+                div {
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+        }
+    }
+
+    .buttons {
+        position: absolute;
         display: flex;
-        bottom: 0;
+        gap: 7px;
+        bottom: 22px;
+        right: 33px;
+        padding: 10px 25px;
+        background-color: #3D3D3D;
+        border-radius: 2rem;
+
+        button {
+            background: transparent;
+            border: none;
+            color: white;
+
+        }
     }
 }
