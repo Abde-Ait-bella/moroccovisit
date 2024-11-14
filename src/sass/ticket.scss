@@ -5,13 +5,29 @@
   justify-content: center;
   width: 100%;
 
+  .print_button {
+    button {
+      position: fixed;
+      display: flex;
+      gap: 7px;
+      top: 22px;
+      left: 28px;
+      padding: 8px 25px;
+      background-color: #3D3D3D;
+      border-radius: 2rem;
+      border: 0;
+      color: #fff;
+    }
+
+  }
 
   .ticket-system {
     max-width: 385px;
 
-    .sucsses-message{
+    .sucsses-message {
       width: 100%;
     }
+
     .top {
 
       .title {
@@ -46,9 +62,9 @@
       flex-direction: column;
       transform: translateY(-510px);
 
+      animation-name: print;
       animation-duration: 2.5s;
       animation-delay: 500ms;
-      animation-name: print;
       animation-fill-mode: forwards;
 
       &::before {
@@ -114,13 +130,13 @@
             display: flex;
             flex-direction: column;
             min-width: 70px;
-            
+
             span {
               font-size: .8em;
               color: rgba(28, 28, 28, .7);
               font-weight: 500;
             }
-            
+
             p {
               margin-bottom: 7px;
             }
@@ -196,4 +212,5 @@
       transform: translateY(0);
     }
   }
+
 }

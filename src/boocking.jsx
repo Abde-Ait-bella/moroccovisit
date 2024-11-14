@@ -89,21 +89,21 @@ function Boocking() {
         }
     }
 
-    const next = async (event) => {
-        // event.preventDefault();
+    const next = async () => {
+
         if (phase === 5) {
             const totalP = parseInt(state.data.p_adult / 500) + parseInt(state.data.p_child / 100);
-            totalP === state.data.rooms.length && phase < 6 && setPhase(phase + 1)
+            totalP === state.data.rooms.length && phase < 6 ? setPhase(phase + 1) : swalWorning() ;
 
         } else if (state.validate === true) {
-            console.log('yes');
             phase < 5 && setPhase(phase + 1)
         }
+
         setState((prev) => ({
             ...prev,
-            validate: null,
+            validate: "empty",
         }))
-        if (state.validate === null) {
+        if (state.validate === null || phase < 5 && state.validate === "empty") {
             swalWorning()
         }
     }
@@ -112,11 +112,12 @@ function Boocking() {
 
 
     const previous = () => {
+        
         phase > 1 ? setPhase(phase - 1) : setPhase(phase)
     }
 
     const handelDate = (event) => {
-        console.log(event)
+        
         removeClasses();
 
         event.currentTarget.classList.toggle('active');
@@ -150,7 +151,7 @@ function Boocking() {
             const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
             return regex.test(value);
         } else {
-            return true;
+            return value.trim() !== "";
         }
     }
 
@@ -197,7 +198,7 @@ function Boocking() {
         }))
     }
 
-    const minus = (name) => {
+    const minus = (name) => {        
         let minu = 1
 
         if (name === "p_adult") minu = 500;
@@ -213,8 +214,11 @@ function Boocking() {
     }
 
     const minuNumber = (event) => {
-        const { name } = event.target;
+        
+        state.data.rooms.pop();
 
+        const { name } = event.target;
+        
         if (name === 'p_adult' && state.data.p_adult > 500) {
             minus(name);
         } else if (name === 'n_days' && state.data.n_days > 1) {
@@ -252,7 +256,7 @@ function Boocking() {
     const swalWorning = () => {
         Swal.fire({
             title: "Worning",
-            text: `Fill in the choices`,
+            text: `Try to fill in the entries`,
             icon: "warning",
             confirmButtonText: "OK",
             confirmButtonColor: "#3D3D3D",
@@ -266,28 +270,39 @@ function Boocking() {
                     phase === 1 ?
                         <>
                             <div className='form'>
-                                <div>
-                                    <p htmlFor="">Nom complet <span>*</span></p>
-                                    <input type="text" name='name' value={state.data?.name} onChange={handelChangeData} placeholder='Taper votre réponse ici' />
+                                <>
+                                    <div>
+                                        <p htmlFor="">Nom complet <span>*</span></p>
+                                        <input type="text" name='name' value={state.data?.name} onChange={handelChangeData} placeholder='Taper votre réponse ici' />
                                     <p>
-                                        <button
-                                            style={{
-                                                fontSize: "15px",
-                                                fontWeight: 400,
-                                                transition: "0.5s",
-                                                padding: "1px 15px",
-                                                borderRadius: "5px",
-                                                color: "white",
-                                                backgroundColor: "#3D3D3D",
-                                                border: "none",
-                                            }}
-                                            onClick={next}
-                                            type='button'
-                                        >
-                                            OK
-                                        </button>
-                                    </p>
-                                </div>
+                                        {
+                                            state.validate === true
+                                                ?
+                                                (
+                                                    <button
+                                                        style={{
+                                                            fontSize: "15px",
+                                                            fontWeight: 400,
+                                                            transition: "0.5s",
+                                                            padding: "1px 15px",
+                                                            borderRadius: "5px",
+                                                            color: "white",
+                                                            backgroundColor: "#3D3D3D",
+                                                            border: "none",
+                                                            padding: "4px 20px",
+                                                        }}
+                                                        onClick={next}
+                                                        type='button'
+                                                    >
+                                                        OK
+                                                    </button>
+                                                )
+                                                :
+                                                ""
+
+                                        } {state.validate === true ? <span style={{ color: "#008f18", fontSize: "15px", fontWeight: 400 }}>Name is valid</span> : state.validate === false ? <span style={{ color: "#d80000", fontSize: "15px", fontWeight: 400 }}>Name not entered</span> : ""}</p>
+                                    </div>
+                                </>
                             </div>
                         </>
 
@@ -312,6 +327,8 @@ function Boocking() {
                                                             color: "white",
                                                             backgroundColor: "#3D3D3D",
                                                             border: "none",
+                                                            padding: "4px 20px",
+
                                                         }}
                                                         onClick={next}
                                                         type='button'
@@ -347,6 +364,8 @@ function Boocking() {
                                                                 color: "white",
                                                                 backgroundColor: "#3D3D3D",
                                                                 border: "none",
+                                                            padding: "4px 20px",
+
                                                             }}
                                                             onClick={next}
                                                             type='button'

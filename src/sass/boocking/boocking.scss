@@ -14,17 +14,19 @@
 
         .form {
             display: flex;
-            justify-content: center;
+            align-items: center;
             width: 100%;
+            flex-direction: column;
 
             div {
                 width: 50%;
+                display: grid;
+                gap: 10px;
 
                 p {
                     font-weight: bold;
                     font-size: 20px;
-                    margin-bottom: 5px;
-
+                    margin: 0;
                     span {
                         color: #b30000;
                         margin-left: 5px;
@@ -114,9 +116,12 @@
                         gap: 10px;
 
                         button {
-                            border: 2px solid #3D3D3D;
+                            border: 3px solid #0000004f;
                             padding: 3px 5px;
-                            border-radius: 0.9rem;
+                            border-radius: 10px;
+                            background-color: #b3b3b3;
+                            color: #ffff;
+                            font-weight: 500;
 
                             &:hover {
                                 color: white;
@@ -209,7 +214,7 @@
     }
 
     .buttons {
-        position: absolute;
+        position: fixed;
         display: flex;
         gap: 7px;
         bottom: 22px;

@@ -12,7 +12,7 @@
             margin-bottom: 42px;
             img{
                 width: 100%;
-                height: 610px;
+                height: auto;
                 object-fit: cover;
                 border-radius: 10px;
             }
@@ -45,19 +45,20 @@
                 //     left: 93px;
                 // }
                 h3{
-                    font-size: 32px;
+                    font-size: 26px;
                     font-weight: bold;
                     padding-left: 2px;
                     color: #3D3D3D;
                
                 }
                 p{
-                    padding-top: 20px;
-                    padding-bottom: 56px;
-                    font-size: 16px;
+                    // padding-top: 10px;
+                    padding-bottom: 20px;
+                    font-size: 13px;
                     font-weight: 500;
                     color: #6D6D6D;
-                    line-height: 30px;
+                    line-height: 23px;
+                    margin: 0;
                 }
  
 
