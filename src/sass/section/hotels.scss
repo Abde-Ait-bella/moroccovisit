@@ -153,6 +153,12 @@
                 .doc-info-right {
                     display: grid;
                     align-content: space-between;
+
+                    .clini-infos{
+                        i{
+                            margin-right: 5px;
+                        }
+                    }
     
                     .clinic-booking {
                         width: 100%;

@@ -38,19 +38,18 @@ import instagramIcone from "../src/assets/svg/footerIcone.svg";
 import facebookIcone from "../src/assets/svg/footerIcone2.svg";
 import twitterIcone from "../src/assets/svg/footerIcone3.svg";
 import youtubeIcone from "../src/assets/svg/footerIcone4.svg";
-// import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps';
 import { GoogleMap, InfoWindow, Marker, StandaloneSearchBox, useJsApiLoader } from '@react-google-maps/api';
 import customIcon from './assets/images/hotel_marker.png';
 import hotel_logo from './assets/images/hotel_logo.png';
-
-// console.log(customIcon)
+import { useInView } from "react-intersection-observer";
 
 const libraries = ["places"];
 
 function Home() {
 
-    // const [lat, setLat] = useState(30.7917);
-    // const [lang, setLang] = useState(-11.0926);
+
+    const { ref: activitesRef, inView: activitesInView } = useInView({ triggerOnce: false });    
+      
     const [defaultZoom, setDefaultZoom] = useState(1);
     const [selectedPlace, setSelectedPlace] = useState({
         location: {
@@ -60,14 +59,25 @@ function Home() {
     });
     const [activeMarker, setActiveMarker] = useState(null);
     const [dataActive, setDataActive] = useState(null);
+    const [typeImg, setTypeImg] = useState(2);
+    const [viewNav, setViewNav] = useState(false);
 
     const [state, setState] = useState({
         hotels: [],
-        // activeMarker : null,
-        // dataActive : null,
     })
 
+    useEffect(()=>{
+        setViewNav(!activitesInView);
+    },[activitesInView])
+
     const inputRef = useRef();
+
+    console.log(viewNav);
+    
+
+    const handelTypeImg = (type) => {
+        setTypeImg(type)
+    }
 
     const containerStyle = {
         width: '99%',
@@ -83,7 +93,6 @@ function Home() {
     const [map, setMap] = React.useState(null)
 
     const onLoad = React.useCallback(function callback(map) {
-        // This is just an example of getting and using the map instance!!! don't just blindly copy!
         const bounds = new window.google.maps.LatLngBounds(center)
         map.fitBounds(bounds)
 
@@ -129,13 +138,12 @@ function Home() {
 
         const request = {
             location: new window.google.maps.LatLng(location.lat, location.lng),
-            radius: '5000', // 5 km radius; adjust as needed
-            type: ['lodging'], // 'lodging' includes hotels and similar accommodations
+            radius: '5000',
+            type: ['lodging'],
         };
 
         service.nearbySearch(request, (results, status) => {
             if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-                // setHotels(results);
                 setState({
                     hotels: results
                 })
@@ -144,8 +152,6 @@ function Home() {
             }
         });
     };
-
-    console.log(state.hotels)
 
     const center = {
         lat: parseInt(selectedPlace?.location?.lat),
@@ -231,7 +237,7 @@ function Home() {
     }
     return (
         <div>
-            <nav class="nav">
+            <nav class={`nav ${!activitesInView && "background"}`}>
                 <ul class="nav__left">
                     <li>
                         <a href="#">
@@ -261,11 +267,11 @@ function Home() {
                     <li><a href="#section-hotels">HOTELS</a></li>
                 </ul>
             </div>
-            <section id="slider" class="slider">
+            <section id="slider" ref={activitesRef} class="slider">
                 <div class="backgrounds">
-                    <img src={AgadirImg} alt="" />
-                    <img class="visible" src={marrakechImg} alt="" />
-                    <img src={TaroudantImg} alt="" />
+                    <img className={`${typeImg === 1 ? "visible" : ""}`} src={AgadirImg} alt="" />
+                    <img className={`${typeImg === 2 ? "visible" : ""}`} src={marrakechImg} alt="" />
+                    <img className={`${typeImg === 3 ? "visible" : ""}`} src={TaroudantImg} alt="" />
                 </div>
                 <ul class="slider__icons">
                     <li><a href="https://www.facebook.com/abdessamade.aitbella">
@@ -285,22 +291,22 @@ function Home() {
                         <label for="">Morocco</label>
                     </div>
                 </div>
-                <div class="slider__villes">
-                    <div class="slider__ville">
+                <div class="slider__villes" >
+                    <div class="slider__ville" onClick={() => handelTypeImg(1)}>
                         <div class="slider__ville__content">
                             <label for="">Agadir</label>
                             <img src={Llocation} alt="" />
                             <p for="">Plan a trip</p>
                         </div>
                     </div>
-                    <div class="slider__ville">
+                    <div class="slider__ville" onClick={() => handelTypeImg(2)}>
                         <div class="slider__ville__content">
                             <label for="">Marrakech</label>
                             <img src={Llocation} alt="" />
                             <p for="">Plan a trip</p>
                         </div>
                     </div>
-                    <div class="slider__ville">
+                    <div class="slider__ville" onClick={() => handelTypeImg(3)}>
                         <div class="slider__ville__content">
                             <label for="">Taroudant</label>
                             <img src={Llocation} alt="" />
@@ -467,48 +473,48 @@ function Home() {
                             state.hotels.length > 0 && (
                                 <div className="list_hotels">
                                     {state.hotels.map((hotel) => (
-                                            <div key={hotel.place_id} class="body-card">
-                                                {/* <div class="card_doc_profile"> */}
-                                                    <div class="doc-info-left">
-                                                        <div class="doctor-img">
-                                                            <img src={hotel_logo} class="img-fluid" alt="hotel image" />
-                                                        </div>
-                                                        <div class="doc-info-cont">
-                                                        <h4 class="doc-name">{hotel.name}</h4>
-                                                            <div class="rating">
-                                                                {console.log('hotel',hotel.rating)
-                                                                }
-                                                                {Array.from({length: (hotel.rating)}).map((r)=>
-                                                                    <i key={r} class="fas fa-star filled"></i>
-                                                                )}
-                                                                 { 
-                                                                 (Number(hotel.rating ) === hotel.rating && !Number.isInteger(hotel.rating )) ?
-                                                                 <i class="fa-solid fa-star-half-stroke"></i>
-                                                                 : <></>
-                                                                }
-                                                                 <span style={{marginLeft: "5px"}} class="d-inline-block average-rating">({hotel.rating})</span>
-                                                            </div>
-                                                            <div class="clinic-details">
-                                                                <p class="doc-location">
-                                                                    <i class="fas fa-map-marker-alt"></i>
-                                                                    <span style={{ fontSize: "small", marginLeft: "6px" }}>{hotel.vicinity}</span>
-                                                                </p>
-                                                            </div>
-                                                        </div>
+                                        <div key={hotel.place_id} class="body-card">
+                                            {/* <div class="card_doc_profile"> */}
+                                            <div class="doc-info-left">
+                                                <div class="doctor-img">
+                                                    <img src={hotel_logo} class="img-fluid" alt="hotel image" />
+                                                </div>
+                                                <div class="doc-info-cont">
+                                                    <h4 class="doc-name">{hotel.name}</h4>
+                                                    <div class="rating">
+                                                        {console.log('hotel', hotel.rating)
+                                                        }
+                                                        {Array.from({ length: (hotel.rating) }).map((r) =>
+                                                            <i key={r} class="fas fa-star filled"></i>
+                                                        )}
+                                                        {
+                                                            (Number(hotel.rating) === hotel.rating && !Number.isInteger(hotel.rating)) ?
+                                                                <i class="fa-solid fa-star-half-stroke"></i>
+                                                                : <></>
+                                                        }
+                                                        <span style={{ marginLeft: "7px" }} class="d-inline-block average-rating">({hotel.rating})</span>
                                                     </div>
-                                                    <div class="doc-info-right">
-                                                        <div class="clini-infos">
-                                                            <ul>
-                                                                <li><i class="fa-solid fa-user-check"></i> {hotel.user_ratings_total}</li>
-                                                                <li><i class="far fa-money-bill-alt"></i> 500 DH</li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="clinic-booking">
-                                                            <Link class="apt-btn" to={`/boocking/${hotel.place_id}/${hotel.name}/${hotel.vicinity}/${hotel.rating}`}>Boocking</Link>
-                                                        </div>
+                                                    <div class="clinic-details">
+                                                        <p class="doc-location">
+                                                            <i class="fas fa-map-marker-alt"></i>
+                                                            <span style={{ fontSize: "small", marginLeft: "6px" }}>{hotel.vicinity}</span>
+                                                        </p>
                                                     </div>
-                                                {/* </div> */}
+                                                </div>
                                             </div>
+                                            <div class="doc-info-right">
+                                                <div class="clini-infos">
+                                                    <ul>
+                                                        <li><i class="fa-solid fa-user-check"></i> {hotel.user_ratings_total}</li>
+                                                        <li><i class="far fa-money-bill-alt"></i> 500 DH</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="clinic-booking">
+                                                    <Link class="apt-btn" to={`/boocking/${hotel.place_id}/${hotel.name}/${hotel.vicinity}/${hotel.rating}`}>Boocking</Link>
+                                                </div>
+                                            </div>
+                                            {/* </div> */}
+                                        </div>
                                     ))}
                                 </div>
                             )
@@ -538,12 +544,11 @@ function Home() {
                                         }}
                                         title={hotel.name}
                                         icon={{
-                                            url: customIcon, 
-                                            scaledSize: new window.google.maps.Size(40, 40), 
+                                            url: customIcon,
+                                            scaledSize: new window.google.maps.Size(40, 40),
                                         }}
-                                        onClick={() => handleMarkerClick(hotel)} 
+                                        onClick={() => handleMarkerClick(hotel)}
                                     >
-                                        {console.log('hotel', hotel)}
                                         {activeMarker === hotel.place_id ? (
                                             <InfoWindow onCloseClick={handleInfoWindowClose}>
                                                 <div style={{ color: "#000", width: "15rem", height: "9rem", textAlign: center, marginBottom: "2px" }}>
