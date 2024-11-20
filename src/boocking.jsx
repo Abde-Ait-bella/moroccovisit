@@ -230,8 +230,7 @@ function Boocking() {
         }
     }
 
-    const rooms = Array.from({ length: 20 }, (r, i) => i + 1);
-    // const ratings = Array.from({ length:  }, (r, i) => i + 1);
+    const rooms = Array.from({ length: 20 }, (_,i) => i + 1);
 
     const hndelRoom = (index) => {
 
