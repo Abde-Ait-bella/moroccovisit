@@ -93,7 +93,7 @@ function Boocking() {
 
         if (phase === 5) {
             const totalP = parseInt(state.data.p_adult / 500) + parseInt(state.data.p_child / 100);
-            totalP === state.data.rooms.length && phase < 6 ? setPhase(phase + 1) : swalWorning() ;
+            totalP === state.data.rooms.length && phase < 6 ? setPhase(phase + 1) : swalWorning();
 
         } else if (state.validate === true) {
             phase < 5 && setPhase(phase + 1)
@@ -112,12 +112,12 @@ function Boocking() {
 
 
     const previous = () => {
-        
+
         phase > 1 ? setPhase(phase - 1) : setPhase(phase)
     }
 
     const handelDate = (event) => {
-        
+
         removeClasses();
 
         event.currentTarget.classList.toggle('active');
@@ -198,7 +198,7 @@ function Boocking() {
         }))
     }
 
-    const minus = (name) => {        
+    const minus = (name) => {
         let minu = 1
 
         if (name === "p_adult") minu = 500;
@@ -214,17 +214,19 @@ function Boocking() {
     }
 
     const minuNumber = (event) => {
-        
-        state.data.rooms.pop();
 
+        
         const { name } = event.target;
+        const person_length = state.data.p_adult / 500 + state.data.p_child / 100;
         
         if (name === 'p_adult' && state.data.p_adult > 500) {
             minus(name);
+            person_length <= state.data.rooms.length &&  state.data.rooms.splice(person_length - 1);            ;
         } else if (name === 'n_days' && state.data.n_days > 1) {
             minus(name);
         } else if (name === 'p_child' && state.data.p_child > 0) {
             minus(name);
+            person_length <= state.data.rooms.length &&  state.data.rooms.splice(person_length - 1);            ;
         }
     }
 
@@ -274,33 +276,34 @@ function Boocking() {
                                     <div>
                                         <p htmlFor="">Nom complet <span>*</span></p>
                                         <input type="text" name='name' value={state.data?.name} onChange={handelChangeData} placeholder='Taper votre réponse ici' />
-                                    <p>
-                                        {
-                                            state.validate === true
-                                                ?
-                                                (
-                                                    <button
-                                                        style={{
-                                                            fontSize: "15px",
-                                                            fontWeight: 400,
-                                                            transition: "0.5s",
-                                                            padding: "1px 15px",
-                                                            borderRadius: "5px",
-                                                            color: "white",
-                                                            backgroundColor: "#3D3D3D",
-                                                            border: "none",
-                                                            padding: "4px 20px",
-                                                        }}
-                                                        onClick={next}
-                                                        type='button'
-                                                    >
-                                                        OK
-                                                    </button>
-                                                )
-                                                :
-                                                ""
+                                        <p className='validation'>
+                                            {
+                                                <button
+                                                    className={`message ${state.validate === true ? 'show' : ''}`}
+                                                    style={{
+                                                        fontSize: "15px",
+                                                        fontWeight: 400,
+                                                        transition: "0.5s",
+                                                        padding: "1px 15px",
+                                                        borderRadius: "5px",
+                                                        color: "white",
+                                                        backgroundColor: "#3D3D3D",
+                                                        border: "none",
+                                                        padding: "4px 20px",
+                                                    }}
+                                                    onClick={next}
+                                                    type='button'
+                                                >
+                                                    OK
+                                                </button>
+                                            } {
+                                                <>
+                                                    <span className={`message ${state.validate === true ? 'show' : ''}`} style={{ color: "#008f18", fontSize: "15px", fontWeight: 400, }}>Name is valid</span>
+                                                    <span className={`message ${state.validate === false ? 'show' : ''}`} style={{ color: "#d80000", fontSize: "15px", fontWeight: 400, }}>Name not entered</span>
+                                                </>
+                                            }
 
-                                        } {state.validate === true ? <span style={{ color: "#008f18", fontSize: "15px", fontWeight: 400 }}>Name is valid</span> : state.validate === false ? <span style={{ color: "#d80000", fontSize: "15px", fontWeight: 400 }}>Name not entered</span> : ""}</p>
+                                        </p>
                                     </div>
                                 </>
                             </div>
@@ -312,34 +315,34 @@ function Boocking() {
                                 <div>
                                     <p htmlFor="">Telephone <span>*</span></p>
                                     <input type="text" name='telephone' value={state.data?.telephone ? state.data.telephone : ""} onChange={handelChangeData} placeholder='Taper votre telephone' />
-                                    <p>
+                                    <p className='validation'>
                                         {
-                                            state.validate === true
-                                                ?
-                                                (
-                                                    <button
-                                                        style={{
-                                                            fontSize: "15px",
-                                                            fontWeight: 400,
-                                                            transition: "0.5s",
-                                                            padding: "1px 15px",
-                                                            borderRadius: "5px",
-                                                            color: "white",
-                                                            backgroundColor: "#3D3D3D",
-                                                            border: "none",
-                                                            padding: "4px 20px",
+                                            <button
+                                                className={`message ${state.validate === true ? 'show' : ''}`}
+                                                style={{
+                                                    fontSize: "15px",
+                                                    fontWeight: 400,
+                                                    transition: "0.5s",
+                                                    padding: "1px 15px",
+                                                    borderRadius: "5px",
+                                                    color: "white",
+                                                    backgroundColor: "#3D3D3D",
+                                                    border: "none",
+                                                    padding: "4px 20px",
 
-                                                        }}
-                                                        onClick={next}
-                                                        type='button'
-                                                    >
-                                                        OK
-                                                    </button>
-                                                )
-                                                :
-                                                ""
-
-                                        } {state.validate === true ? <span style={{ color: "#008f18", fontSize: "15px", fontWeight: 400 }}>Phone is valid</span> : state.validate === false ? <span style={{ color: "#d80000", fontSize: "15px", fontWeight: 400 }}>Phone no valid</span> : ""}</p>
+                                                }}
+                                                onClick={next}
+                                                type='button'
+                                            >
+                                                OK
+                                            </button>
+                                        } {
+                                            <>
+                                                <span className={`message ${state.validate === true ? 'show' : ''}`} style={{ color: "#008f18", fontSize: "15px", fontWeight: 400 }}>Phone is valid</span>
+                                                <span className={`message ${state.validate === false ? 'show' : ''}`} style={{ color: "#d80000", fontSize: "15px", fontWeight: 400 }}>Phone no valid</span>
+                                            </>
+                                        }
+                                    </p>
 
                                 </div>
                             </div>
@@ -349,34 +352,35 @@ function Boocking() {
                                     <div>
                                         <p htmlFor="">Email</p>
                                         <input type="email" name='email' value={state.data?.email ? state.data.email : ""} onChange={handelChangeData} placeholder='Taper votre email' />
-                                        <p>
+                                        <p className='validation'>
                                             {
-                                                state.validate === true
-                                                    ?
-                                                    (
-                                                        <button
-                                                            style={{
-                                                                fontSize: "15px",
-                                                                fontWeight: 400,
-                                                                transition: "0.5s",
-                                                                padding: "1px 15px",
-                                                                borderRadius: "5px",
-                                                                color: "white",
-                                                                backgroundColor: "#3D3D3D",
-                                                                border: "none",
-                                                            padding: "4px 20px",
+                                                <button
+                                                className={`message ${state.validate === true ? 'show' : ''}`}
+                                                    style={{
+                                                        fontSize: "15px",
+                                                        fontWeight: 400,
+                                                        transition: "0.5s",
+                                                        padding: "1px 15px",
+                                                        borderRadius: "5px",
+                                                        color: "white",
+                                                        backgroundColor: "#3D3D3D",
+                                                        border: "none",
+                                                        padding: "4px 20px",
 
-                                                            }}
-                                                            onClick={next}
-                                                            type='button'
-                                                        >
-                                                            OK
-                                                        </button>
-                                                    )
-                                                    :
-                                                    ""
+                                                    }}
+                                                    onClick={next}
+                                                    type='button'
+                                                >
+                                                    OK
+                                                </button>
 
-                                            } {state.validate === true ? <span style={{ color: "#008f18", fontSize: "15px", fontWeight: 400 }}>Email is valid!</span> : state.validate === false ? <span style={{ color: "#d80000", fontSize: "15px", fontWeight: 400 }}>Email address no valid.</span> : <></>}</p>
+                                            } {
+                                                <>
+                                                    <span className={`message ${state.validate === true ? 'show' : ''}`} style={{ color: "#008f18", fontSize: "15px", fontWeight: 400 }}>Email is valid!</span>
+                                                    <span className={`message ${state.validate === false ? 'show' : ''}`} style={{ color: "#d80000", fontSize: "15px", fontWeight: 400 }}>Email address no valid.</span>
+                                                </>
+                                            }
+                                        </p>
                                     </div>
                                 </div>
                                 :

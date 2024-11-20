@@ -18,6 +18,40 @@
             width: 100%;
             flex-direction: column;
 
+            @keyframes fadeIn {
+                0% {
+                    opacity: 0;
+                    display: flex;
+                }
+            
+                50% {
+                    opacity: 0.5;
+                    display: flex;
+                }
+            
+                100% {
+                    opacity: 1;
+                    display: flex;
+                }
+            }
+
+            @keyframes fadeOut {
+                0% {
+                    opacity: 1;
+                    display: flex ;
+                }
+            
+                50% {
+                    opacity: 0.5;
+                    display: none;
+                }
+            
+                100% {
+                    opacity: 0;
+                    display: none;
+                }
+            }
+
             div {
                 width: 50%;
                 display: grid;
@@ -27,6 +61,19 @@
                     font-weight: bold;
                     font-size: 20px;
                     margin: 0;
+                    &.validation{
+                        display: flex;
+                        align-items: center;
+                        height: 2rem;
+
+                                // animation: fadeIn 1s ease-in-out ;
+                        .message{
+                            animation: fadeOut 0s ease-out forwards;
+                            &.show{
+                                animation: fadeIn 1s ease-in-out ;
+                            }
+                        }
+                    }
                     span {
                         color: #b30000;
                         margin-left: 5px;
