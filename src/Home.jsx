@@ -42,14 +42,15 @@ import { GoogleMap, InfoWindow, Marker, StandaloneSearchBox, useJsApiLoader } fr
 import customIcon from './assets/images/hotel_marker.png';
 import hotel_logo from './assets/images/hotel_logo.png';
 import { useInView } from "react-intersection-observer";
+import Nav from "./Nav";
 
 const libraries = ["places"];
 
 function Home() {
 
 
-    const { ref: activitesRef, inView: activitesInView } = useInView({ triggerOnce: false });    
-      
+    const { ref: activitesRef, inView: activitesInView } = useInView({ triggerOnce: false });
+
     const [defaultZoom, setDefaultZoom] = useState(1);
     const [selectedPlace, setSelectedPlace] = useState({
         location: {
@@ -66,14 +67,14 @@ function Home() {
         hotels: [],
     })
 
-    useEffect(()=>{
+    useEffect(() => {
         setViewNav(!activitesInView);
-    },[activitesInView])
+    }, [activitesInView])
 
     const inputRef = useRef();
 
     console.log(viewNav);
-    
+
 
     const handelTypeImg = (type) => {
         setTypeImg(type)
@@ -240,9 +241,9 @@ function Home() {
             <nav class={`nav ${!activitesInView && "background"}`}>
                 <ul class="nav__left">
                     <li>
-                        <a href="#">
+                        <Link to="/">
                             <img src={logoSvg} alt="" />
-                        </a>
+                        </Link>
                     </li>
                 </ul>
                 <ul class="nav__center">
@@ -471,7 +472,7 @@ function Home() {
                     <div className={`map_section ${dataActive ? 'data_active' : ''}`}>
                         {
                             state.hotels.length > 0 && (
-                                <div className="list_hotels">
+                                <div className="list_hotels" >
                                     {state.hotels.map((hotel) => (
                                         <div key={hotel.place_id} class="body-card">
                                             {/* <div class="card_doc_profile"> */}
@@ -522,58 +523,58 @@ function Home() {
 
                         }
 
-                        {isLoaded ?
-                            // <LoadScript googleMapsApiKey="AIzaSyBWF4GwzK9NQfaHWgXzpyYzzOZUSsxt824" libraries={libraries}>
-                            <GoogleMap
-                                mapContainerStyle={containerStyle}
-                                zoom={defaultZoom}
-                                center={center}
-                                options={{
-                                    disableDefaultUI: true, // Optional: disable UI for a cleaner look
-                                    zoomControl: true,      // Enable zoom control if desired
-                                }}
-                                onLoad={onLoad}
-                                onUnmount={onUnmount}
-                            >
-                                {state.hotels.map((hotel) => (
-                                    <Marker
-                                        key={hotel.place_id}
-                                        position={{
-                                            lat: hotel.geometry.location.lat(),
-                                            lng: hotel.geometry.location.lng(),
-                                        }}
-                                        title={hotel.name}
-                                        icon={{
-                                            url: customIcon,
-                                            scaledSize: new window.google.maps.Size(40, 40),
-                                        }}
-                                        onClick={() => handleMarkerClick(hotel)}
-                                    >
-                                        {activeMarker === hotel.place_id ? (
-                                            <InfoWindow onCloseClick={handleInfoWindowClose}>
-                                                <div style={{ color: "#000", width: "15rem", height: "9rem", textAlign: center, marginBottom: "2px" }}>
-                                                    <img style={{ height: "2.2rem", objectFit: "contain" }} src={hotel.icon} alt="" />
-                                                    <p style={{ fontWeight: "bold", color: "#2D2D2D", textAlign: "center", marginBottom: "0.6rem" }}>{hotel.name}</p>
-                                                    <p style={{ marginBottom: "0.3rem", fontSize: "10px" }}>{hotel.vicinity}</p>
-                                                    <p style={{ color: "#ffc207", fontWeight: "bold" }}>Rating: {hotel.rating || 'N/A'}</p>
-                                                    <div>
-                                                        <Link to={`/boocking/${hotel.place_id}/${hotel.name}/${hotel.vicinity}/${hotel.rating}`} style={{ padding: "8px 36px", fontWeight: "bold", margin: "10px 0", borderRadius: "15px", backgroundColor: "#2D2D2D", color: "white", textDecoration: "none" }}>
-                                                            Boocking
-                                                        </Link>
+                            {isLoaded ?
+                                // <LoadScript googleMapsApiKey="AIzaSyBWF4GwzK9NQfaHWgXzpyYzzOZUSsxt824" libraries={libraries}>
+                                <GoogleMap
+                                    mapContainerStyle={containerStyle}
+                                    zoom={defaultZoom}
+                                    center={center}
+                                    options={{
+                                        disableDefaultUI: true, // Optional: disable UI for a cleaner look
+                                        zoomControl: true,      // Enable zoom control if desired
+                                    }}
+                                    onLoad={onLoad}
+                                    onUnmount={onUnmount}
+                                >
+                                    {state.hotels.map((hotel) => (
+                                        <Marker
+                                            key={hotel.place_id}
+                                            position={{
+                                                lat: hotel.geometry.location.lat(),
+                                                lng: hotel.geometry.location.lng(),
+                                            }}
+                                            title={hotel.name}
+                                            icon={{
+                                                url: customIcon,
+                                                scaledSize: new window.google.maps.Size(40, 40),
+                                            }}
+                                            onClick={() => handleMarkerClick(hotel)}
+                                        >
+                                            {activeMarker === hotel.place_id ? (
+                                                <InfoWindow onCloseClick={handleInfoWindowClose}>
+                                                    <div style={{ color: "#000", width: "15rem", height: "9rem", textAlign: center, marginBottom: "2px" }}>
+                                                        <img style={{ height: "2.2rem", objectFit: "contain" }} src={hotel.icon} alt="" />
+                                                        <p style={{ fontWeight: "bold", color: "#2D2D2D", textAlign: "center", marginBottom: "0.6rem" }}>{hotel.name}</p>
+                                                        <p style={{ marginBottom: "0.3rem", fontSize: "10px" }}>{hotel.vicinity}</p>
+                                                        <p style={{ color: "#ffc207", fontWeight: "bold" }}>Rating: {hotel.rating || 'N/A'}</p>
+                                                        <div>
+                                                            <Link to={`/boocking/${hotel.place_id}/${hotel.name}/${hotel.vicinity}/${hotel.rating}`} style={{ padding: "8px 36px", fontWeight: "bold", margin: "10px 0", borderRadius: "15px", backgroundColor: "#2D2D2D", color: "white", textDecoration: "none" }}>
+                                                                Boocking
+                                                            </Link>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </InfoWindow>
-                                        )
-                                            : null
-                                        }
-                                    </Marker>
-                                ))}
-                            </GoogleMap>
-                            // </LoadScript>
+                                                </InfoWindow>
+                                            )
+                                                : null
+                                            }
+                                        </Marker>
+                                    ))}
+                                </GoogleMap>
+                                // </LoadScript>
 
-                            :
-                            <></>
-                        }
+                                :
+                                <></>
+                            }
                     </div>
                 </section>
 

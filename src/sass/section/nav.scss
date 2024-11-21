@@ -25,9 +25,9 @@
         }
 
         // .nav__left {
-            // img {
-                // filter: invert(1);
-            // }
+        // img {
+        // filter: invert(1);
+        // }
         // }
     }
 
@@ -38,6 +38,8 @@
     .nav__center {
         display: flex;
         list-style-type: none;
+        padding: 0;
+        margin: 0;
 
         a {
             margin-left: 32px;
@@ -50,7 +52,12 @@
     }
 
     .nav__left {
-        li {
+
+        padding: 0;
+        margin-bottom: 0;
+        margin-left: 5%;
+
+        & li {
             list-style-type: none;
         }
 
@@ -169,7 +176,8 @@
         .nav__right {
             display: block;
         }
-        &.background{
+
+        &.background {
             background-color: #3D3D3D;
             color: #000000;
             color: #fff;
@@ -177,6 +185,7 @@
             z-index: 3;
             display: flex;
             align-items: center;
+            justify-content: space-around;
         }
     }
 

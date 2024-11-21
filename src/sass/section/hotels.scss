@@ -111,18 +111,19 @@
 
     .map_section {
         display: grid;
-        grid-template-columns: 100%;
-        height: 100vh;
+        grid-template-columns: auto;
+        // height: 100vh;
         overflow: hidden;
 
         &.data_active {
             grid-template-columns: 50% 50%;
         }
 
-        .list_hotels{
+        .list_hotels {
             overflow: auto;
             scrollbar-width: none;
-            
+            height: 100vh;
+
             .body-card {
                 background-color: #6a6a6a;
                 display: grid;
@@ -130,13 +131,13 @@
                 margin: 15px 15px;
                 border-radius: 15px;
                 padding: 15px;
-    
+
                 .doc-info-left {
                     display: grid;
                     grid-template-columns: auto auto;
                     gap: 15px;
-    
-                    .doctor-img{
+
+                    .doctor-img {
                         width: 7rem;
                         display: flex;
                         align-items: center;
@@ -149,25 +150,25 @@
                         }
                     }
 
-                    .doc-info-cont{
-                        .rating{
-                            i{
-                                    color: rgb(255 137 0);
+                    .doc-info-cont {
+                        .rating {
+                            i {
+                                color: rgb(255 137 0);
                             }
                         }
                     }
                 }
-    
+
                 .doc-info-right {
                     display: grid;
                     align-content: space-between;
 
-                    .clini-infos{
-                        i{
+                    .clini-infos {
+                        i {
                             margin-right: 5px;
                         }
                     }
-    
+
                     .clinic-booking {
                         width: 100%;
                         text-align: center;
@@ -175,7 +176,7 @@
                         color: white;
                         padding: 9px 0;
                         border-radius: 10px;
-    
+
                         a {
                             color: white;
                             text-decoration: none;
@@ -183,7 +184,7 @@
                         }
                     }
                 }
-    
+
             }
         }
 
@@ -234,6 +235,24 @@
 
         .btn-search {
             padding-top: 30px;
+        }
+    }
+
+    .map_section {
+        // display: grid;
+        // height: 100vh;
+        // overflow: hidden;
+        
+        &.data_active {
+            grid-template-columns: 100% !important; 
+            // grid-template-columns: 50% 50%;
+            & .list_hotels{
+                order: 1;
+
+                & .body-card{
+                    grid-template-columns: auto;
+                }
+            }
         }
     }
 }

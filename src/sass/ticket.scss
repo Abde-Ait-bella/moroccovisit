@@ -1,5 +1,5 @@
 .tickets {
-  position: absolute;
+  padding: 3rem 0;
   top: 40px;
   display: flex;
   justify-content: center;
@@ -10,13 +10,14 @@
       position: fixed;
       display: flex;
       gap: 7px;
-      top: 22px;
       left: 28px;
-      padding: 8px 25px;
       background-color: #3D3D3D;
       border-radius: 2rem;
       border: 0;
       color: #fff;
+      z-index: 99 !important;
+      bottom: 22px;
+      padding: 10px 25px !important;
     }
 
   }
@@ -29,6 +30,7 @@
     }
 
     .top {
+      width: 100%;
 
       .title {
         font-weight: normal;
@@ -40,7 +42,7 @@
       }
 
       .printer {
-        width: 86%;
+        width: 100%;
         height: 20px;
         border: 5px solid #fff;
         border-radius: 10px;
@@ -53,10 +55,12 @@
       overflow: hidden;
       margin-top: -10px;
       padding-bottom: 10px;
+      display: flex;
+      justify-content: center;
     }
 
     .receipts {
-      width: 85%;
+      width: 75%;
       display: flex;
       align-items: center;
       flex-direction: column;
@@ -85,7 +89,7 @@
         padding: 25px 30px;
         text-align: left;
         min-height: 200px;
-        width: 88%;
+        width: 100%;
         background-color: #fff;
         border-radius: 12px 12px 15px 15px;
         border: 1px solid rgba(0, 0, 0, 0.2);
@@ -210,6 +214,17 @@
 
     100% {
       transform: translateY(0);
+    }
+  }
+
+}
+
+@media (max-width: 900px) {
+  .tickets {
+    padding: 0 !important;
+
+    .ticket-system {
+      max-width: 315px !important;
     }
   }
 

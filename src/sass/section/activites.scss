@@ -94,3 +94,12 @@
 .slick-next {
     right: -91px;
 }
+
+@media (max-width: 900px) {
+    .slick-next{
+        display: none !important;
+    }
+    .slick-prev{
+        display: none !important;
+    }
+}

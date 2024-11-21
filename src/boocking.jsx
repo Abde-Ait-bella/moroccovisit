@@ -4,6 +4,7 @@ import moment from 'moment';
 import Ticket from './ticket';
 import { useParams } from 'react-router-dom';
 import Swal from "sweetalert2";
+import Nav from "./Nav"
 
 function Boocking() {
 
@@ -13,7 +14,7 @@ function Boocking() {
         GenerateWeek();
     }, [1])
 
-    const [phase, setPhase] = useState(1);
+    const [phase, setPhase] = useState(6);
     const [state, setState] = useState({
         currentDay: moment(),
         dayAfterWeek: moment(),
@@ -215,22 +216,22 @@ function Boocking() {
 
     const minuNumber = (event) => {
 
-        
+
         const { name } = event.target;
         const person_length = state.data.p_adult / 500 + state.data.p_child / 100;
-        
+
         if (name === 'p_adult' && state.data.p_adult > 500) {
             minus(name);
-            person_length <= state.data.rooms.length &&  state.data.rooms.splice(person_length - 1);            ;
+            person_length <= state.data.rooms.length && state.data.rooms.splice(person_length - 1);;
         } else if (name === 'n_days' && state.data.n_days > 1) {
             minus(name);
         } else if (name === 'p_child' && state.data.p_child > 0) {
             minus(name);
-            person_length <= state.data.rooms.length &&  state.data.rooms.splice(person_length - 1);            ;
+            person_length <= state.data.rooms.length && state.data.rooms.splice(person_length - 1);;
         }
     }
 
-    const rooms = Array.from({ length: 20 }, (_,i) => i + 1);
+    const rooms = Array.from({ length: 20 }, (_, i) => i + 1);
 
     const hndelRoom = (index) => {
 
@@ -265,6 +266,8 @@ function Boocking() {
     }
 
     return (
+        <>
+        <Nav/>
         <div className='boocking'>
             <form action="">
                 {
@@ -354,7 +357,7 @@ function Boocking() {
                                         <p className='validation'>
                                             {
                                                 <button
-                                                className={`message ${state.validate === true ? 'show' : ''}`}
+                                                    className={`message ${state.validate === true ? 'show' : ''}`}
                                                     style={{
                                                         fontSize: "15px",
                                                         fontWeight: 400,
@@ -385,9 +388,9 @@ function Boocking() {
                                 :
                                 phase === 4 ?
                                     <div className='form'>
-                                        <div className='boocking_date'>
+                                            <button type='button' onClick={PreviousWeek} className='left'><i class="fa-solid fa-circle-arrow-left"></i></button>
+                                        <div className='table-responsive boocking_date'>
                                             <div className="header">
-                                                <button type='button' onClick={PreviousWeek} className='left'><i class="fa-solid fa-circle-arrow-left"></i></button>
                                                 <div className='header_date'>
                                                     <div>
                                                         {state.week.map(d =>
@@ -400,7 +403,6 @@ function Boocking() {
                                                         )}
                                                     </div>
                                                 </div>
-                                                <button type='button' onClick={NextWeek} className='right'><i class="fa-solid fa-circle-arrow-right"></i></button>
                                             </div>
                                             <div className="body" ref={parentRef}>
                                                 {state.week.map((_, index) =>
@@ -413,6 +415,7 @@ function Boocking() {
                                                 )}
                                             </div>
                                         </div>
+                                            <button type='button' onClick={NextWeek} className='right'><i class="fa-solid fa-circle-arrow-right"></i></button>
                                         {state.validate === false
                                             ?
                                             swalWorning()
@@ -465,6 +468,8 @@ function Boocking() {
 
                                             </div>
 
+                                            <h6 className='shouse'>Choose <i class="fa-solid ms-2 fa-hand-point-down"></i></h6>
+
                                             <div className="rooms">
                                                 {rooms.map((r, i) =>
                                                     <div id={i} className='checkbox' style={{ background: (state.data.rooms?.find(e => e === (i + 1)) ? '#3D3D3D' : ''), color: (state.data.rooms?.find(e => e === (i + 1)) ? '#FFFF' : '') }} onClick={() => hndelRoom(i + 1)}>
@@ -493,6 +498,7 @@ function Boocking() {
                 <button type='button' onClick={next}>next</button>
             </div>
         </div>
+        </>
     )
 }
 
