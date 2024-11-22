@@ -33,5 +33,5 @@ Ce projet a pour objectif de transporter les utilisateurs dans les splendides r�
 1. Clonez le dépôt :
 
    ```bash
-   git clone [https://github.com/votre-utilisateur/decouverte-maroc.git](https://github.com/Abde-Ait-bella/moroccovisit.git)
+   git clone https://github.com/Abde-Ait-bella/moroccovisit.git
    cd moroccovisit
