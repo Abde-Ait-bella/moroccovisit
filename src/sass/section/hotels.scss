@@ -112,7 +112,6 @@
     .map_section {
         display: grid;
         grid-template-columns: auto;
-        // height: 100vh;
         overflow: hidden;
 
         &.data_active {

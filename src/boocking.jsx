@@ -14,7 +14,7 @@ function Boocking() {
         GenerateWeek();
     }, [1])
 
-    const [phase, setPhase] = useState(6);
+    const [phase, setPhase] = useState(1);
     const [state, setState] = useState({
         currentDay: moment(),
         dayAfterWeek: moment(),
