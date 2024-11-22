@@ -6,7 +6,7 @@ Bienvenue sur le dépôt GitHub du projet **Découverte Virtuelle du Maroc** ! C
 
 Ce projet a pour objectif de transporter les utilisateurs dans les splendides régions du Maroc à travers une interface front-end immersive et interactive. Désormais, l'ajout de nouvelles fonctionnalités permet d'explorer plus facilement les villes marocaines, de trouver des hôtels à proximité et de réserver des rendez-vous.
 
-### 🌐 [Lien vers le projet en ligne](https://morocco.becj.net/)
+### 🌐 [Lien vers le projet en ligne](http://moroccovisit.aitbella.digital/)
 
 ## ⚒️ Technologies Utilisées
 
