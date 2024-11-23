@@ -93,7 +93,9 @@ function Boocking() {
     const next = async () => {
 
         if (phase === 5) {
-            const totalP = parseInt(state.data.p_adult / 500) + parseInt(state.data.p_child / 100);
+            const totalP = parseInt(state.data.p_adult / 500) + parseInt(state.data.p_child / 200);
+            console.log('length',parseInt(state.data.p_child / 200));
+            
             totalP === state.data.rooms.length && phase < 6 ? setPhase(phase + 1) : swalWorning();
 
         } else if (state.validate === true) {
@@ -218,7 +220,7 @@ function Boocking() {
 
 
         const { name } = event.target;
-        const person_length = state.data.p_adult / 500 + state.data.p_child / 100;
+        const person_length = state.data.p_adult / 500 + (state.data.p_child / 200);
 
         if (name === 'p_adult' && state.data.p_adult > 500) {
             minus(name);

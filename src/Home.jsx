@@ -62,6 +62,7 @@ function Home() {
     const [dataActive, setDataActive] = useState(null);
     const [typeImg, setTypeImg] = useState(2);
     const [viewNav, setViewNav] = useState(false);
+    const [open, setOpen] = useState(false);
 
     const [state, setState] = useState({
         hotels: [],
@@ -247,14 +248,14 @@ function Home() {
                     <li><a href="#section-hotels">HOTELS</a></li>
                 </ul>
                 <div class="nav__right">
-                    <div class="navberger">
+                    <div onClick={()=> setOpen(!open)} class={`navberger ${open ? "open": ""}`}>
                         <span></span>
                         <span></span>
                         <span></span>
                     </div>
                 </div>
             </nav>
-            <div class="menumobil">
+            <div class={`menumobil ${open ? "open": ""}`} onClick={() => setOpen(!open)}>
                 <ul>
                     <li><a href="#slider">HOME</a></li>
                     <li><a href="#activites">PLACES</a></li>
