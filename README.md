@@ -6,7 +6,7 @@ Bienvenue sur le dépôt GitHub du projet **Découverte Virtuelle du Maroc** ! C
 
 Ce projet a pour objectif de transporter les utilisateurs dans les splendides régions du Maroc à travers une interface front-end immersive et interactive. Désormais, l'ajout de nouvelles fonctionnalités permet d'explorer plus facilement les villes marocaines, de trouver des hôtels à proximité et de réserver des rendez-vous.
 
-### 🌐 [Lien vers le projet en ligne](https://morocco.becj.net/)
+### 🌐 [Lien vers le projet en ligne](http://moroccovisit.aitbella.digital/)
 
 ## ⚒️ Technologies Utilisées
 
@@ -19,7 +19,7 @@ Ce projet a pour objectif de transporter les utilisateurs dans les splendides r�
 - **Exploration Virtuelle** : Découvrez la beauté naturelle et culturelle du Maroc avec une interface responsive pour une accessibilité optimale sur tous les appareils.
 - **Recherche de Ville** : Utilisez l'API Google pour rechercher des villes spécifiques au Maroc.
 - **Hôtels à Proximité** : Affichez les hôtels à proximité en fonction de la ville sélectionnée.
-- **Réservation de Rendez-vous** : Fonctionnalité permettant de prendre des rendez-vous directement à partir de l'interface.
+- **Réservation de Rendez-vous** : Fonctionnalité permettant de prendre des rendez-vous directement à partir de l'interface (truqué).
   
 ## 🚀 Installation et Utilisation
 
@@ -33,5 +33,5 @@ Ce projet a pour objectif de transporter les utilisateurs dans les splendides r�
 1. Clonez le dépôt :
 
    ```bash
-   git clone https://github.com/votre-utilisateur/decouverte-maroc.git
-   cd decouverte-maroc
+   git clone https://github.com/Abde-Ait-bella/moroccovisit.git
+   cd moroccovisit
