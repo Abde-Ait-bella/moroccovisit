@@ -506,9 +506,9 @@ function Home() {
                                                                 <li><i class="far fa-money-bill-alt"></i> 500 DH</li>
                                                             </ul>
                                                         </div>
-                                                        <div class="clinic-booking">
-                                                            <Link class="apt-btn" to={`/boocking/${hotel.place_id}/${hotel.name}/${hotel.vicinity}/${hotel.rating}`}>Boocking</Link>
-                                                        </div>
+                                                        <Link class="clinic-booking" to={`/boocking/${hotel.place_id}/${hotel.name}/${hotel.vicinity}/${hotel.rating}`}>
+                                                            <span class="apt-btn" >Boocking</span>
+                                                        </Link>
                                                     </div>
                                                     {/* </div> */}
                                                 </div>

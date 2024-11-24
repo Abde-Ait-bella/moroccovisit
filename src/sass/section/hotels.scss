@@ -175,11 +175,11 @@
                         color: white;
                         padding: 9px 0;
                         border-radius: 10px;
-
-                        a {
+                        text-decoration: none;
+                        font-weight: bold;
+                        
+                        span {
                             color: white;
-                            text-decoration: none;
-                            font-weight: bold;
                         }
                     }
                 }
@@ -246,7 +246,7 @@
             grid-template-columns: 100% !important; 
             // grid-template-columns: 50% 50%;
             & .list_hotels{
-                order: 1;
+                // order: 1;
 
                 & .body-card{
                     grid-template-columns: auto;
