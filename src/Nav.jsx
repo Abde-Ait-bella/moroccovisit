@@ -14,19 +14,6 @@ function Nav() {
                         </Link>
                     </li>
                 </ul>
-                <ul class="nav__center">
-                    <li><Link to="/">HOME</Link></li>
-                    <li><Link to="/">PLACES</Link></li>
-                    <li><Link to="/">ABOUT</Link></li>
-                    <li><Link to="/">HOTELS</Link></li>
-                </ul>
-                {/* <div class="nav__right">
-                    <div onClick={() => setOpen(!open)} class={`navberger ${open ? "open" : ""}`}>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </div> */}
             </nav>
             {/* <div class={`menumobil ${open ? "open" : ""}`} onClick={() => setOpen(!open)}>
                 <ul>
